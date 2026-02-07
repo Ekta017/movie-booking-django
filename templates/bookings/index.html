@@ -1,0 +1,28 @@
+{% extends "bookings/base.html" %}
+{% block content %}
+<form method="GET" action="{% url 'index' %}" class="row g-3 mb-5">
+    <div class="col-md-4"><input type="text" name="search" class="form-control" placeholder="Search..."></div>
+    <div class="col-md-3">
+        <select name="genre" class="form-select">
+            <option value="">All Genres</option>
+            <option value="Action">Action</option>
+            <option value="Sci-Fi">Sci-Fi</option>
+        </select>
+    </div>
+    <div class="col-md-2"><button class="btn btn-dark w-100">Filter</button></div>
+</form>
+
+<div class="row">
+    {% for movie in movies %}
+    <div class="col-md-4 mb-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-body text-center">
+                <h5 class="fw-bold">{{ movie.title }}</h5>
+                <p class="badge bg-danger">{{ movie.genre }}</p>
+                <a href="{% url 'detail' movie.id %}" class="btn btn-primary d-block">View & Book</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
