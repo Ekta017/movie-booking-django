@@ -5,29 +5,25 @@
 
 <div class="container">
 
-    <!-- 🔍 Search & Filter Form -->
+    <!-- Search & Filter -->
     <form method="get" class="filter-form">
-        <input
-            type="text"
-            name="search"
-            placeholder="Search movies..."
-            value="{{ request.GET.search }}"
-        >
+        <input type="text" name="search" placeholder="Search movies..."
+               value="{{ request.GET.search }}">
 
         <select name="genre">
             <option value="">All Genres</option>
             {% for movie in movies %}
-                <option value="{{ movie.genre }}"
-                    {% if request.GET.genre == movie.genre %}selected{% endif %}>
-                    {{ movie.genre }}
-                </option>
+            <option value="{{ movie.genre }}"
+                {% if request.GET.genre == movie.genre %}selected{% endif %}>
+                {{ movie.genre }}
+            </option>
             {% endfor %}
         </select>
 
         <button type="submit">Filter</button>
     </form>
 
-    <!-- 🎬 Movie Cards -->
+    <!-- Movie Cards -->
     <div class="movie-grid">
         {% for movie in movies %}
         <div class="movie-card">
@@ -39,8 +35,8 @@
             {% endif %}
 
             <h3>{{ movie.title }}</h3>
-            <p class="genre">{{ movie.genre }}</p>
-            <p class="duration">⏱ {{ movie.duration }}</p>
+            <p>{{ movie.genre }}</p>
+            <p>⏱ {{ movie.duration }}</p>
 
             <a href="{% url 'movie_detail' movie.id %}" class="book-btn">
                 Book Now
@@ -48,7 +44,7 @@
 
         </div>
         {% empty %}
-        <p style="text-align:center;">No movies found.</p>
+        <p>No movies available.</p>
         {% endfor %}
     </div>
 

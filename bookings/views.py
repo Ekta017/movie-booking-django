@@ -8,16 +8,16 @@ from django.conf import settings
 
 
 # --- Task 1: Movie Listing with Filters & Search ---
+from django.shortcuts import render, get_object_or_404
+from .models import Movie
+
 def index(request):
-    # Retrieve query parameters from the URL
     genre = request.GET.get('genre')
     lang = request.GET.get('language')
     search = request.GET.get('search')
 
-    # Start with all movies
     movies = Movie.objects.all()
 
-    # Apply filters based on user input
     if genre:
         movies = movies.filter(genre=genre)
     if lang:
@@ -28,11 +28,10 @@ def index(request):
     return render(request, 'bookings/index.html', {'movies': movies})
 
 
-# --- Task 2: Movie Detail & Trailer ---
-def movie_detail(request, movie_id):
-    # Fetch the movie or return a 404 error if not found
-    movie = get_object_or_404(Movie, pk=movie_id)
+def movie_detail(request, id):
+    movie = get_object_or_404(Movie, id=id)
     return render(request, 'bookings/detail.html', {'movie': movie})
+
 
 
 # --- Task 3, 4 & 5: Booking Logic & Timeout ---
@@ -90,7 +89,7 @@ def admin_dashboard(request):
     }
     return render(request, 'bookings/admin.html', context)
 
-from .models import Movie
+# from .models import Movie
 from django.shortcuts import render
 
 def home(request):
