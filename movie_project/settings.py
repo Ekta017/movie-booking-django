@@ -20,7 +20,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-a%4c%1rqofv5)obox5_^iit%!@-#4fu$m1&z+maen$-_%*m=t+'
+# SECRET_KEY = 'django-insecure-a%4c%1rqofv5)obox5_^iit%!@-#4fu$m1&z+maen$-_%*m=t+'
+SECRET_KEY = os.environ.get(
+    'SECRET_KEY',
+    'django-insecure-render-fallback-secret-key-123456789'
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -149,7 +153,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
