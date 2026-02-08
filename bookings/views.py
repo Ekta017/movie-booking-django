@@ -89,3 +89,10 @@ def admin_dashboard(request):
         'stats': movie_stats
     }
     return render(request, 'bookings/admin.html', context)
+
+from .models import Movie
+from django.shortcuts import render
+
+def home(request):
+    movies = Movie.objects.all()
+    return render(request, 'home.html', {'movies': movies})

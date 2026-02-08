@@ -5,9 +5,9 @@ from datetime import timedelta
 class Movie(models.Model):
     title = models.CharField(max_length=200)
     genre = models.CharField(max_length=100)
-    language = models.CharField(max_length=100)
-    trailer_id = models.CharField(max_length=100) # YouTube Video ID
-    price = models.DecimalField(max_digits=10, decimal_places=2, default=500.00)
+    duration = models.CharField(max_length=50)
+    poster = models.ImageField(upload_to='posters/', blank=True, null=True)
+    description = models.TextField(blank=True)
 
     def __str__(self):
         return self.title
