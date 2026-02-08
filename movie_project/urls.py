@@ -20,8 +20,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls), # Built-in Django Admin
-    path('', include('bookings.urls')), # Points to bookings/urls.py
+    path('admin/', admin.site.urls),
+    path('', include('bookings.urls')),  # ✅ REQUIRED
 ]
 
 if settings.DEBUG:

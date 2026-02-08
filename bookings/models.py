@@ -5,12 +5,14 @@ from datetime import timedelta
 class Movie(models.Model):
     title = models.CharField(max_length=200)
     genre = models.CharField(max_length=100)
+    language = models.CharField(max_length=50, blank=True)  # ✅ ADD
     duration = models.CharField(max_length=50)
     poster = models.ImageField(upload_to='posters/', blank=True, null=True)
     description = models.TextField(blank=True)
 
     def __str__(self):
         return self.title
+
 
 class Booking(models.Model):
     # FIXED: Replaced 'on_submit' with 'on_delete=models.CASCADE'

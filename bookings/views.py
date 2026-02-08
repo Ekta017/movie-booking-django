@@ -34,6 +34,7 @@ def movie_detail(request, id):
 
 
 
+
 # --- Task 3, 4 & 5: Booking Logic & Timeout ---
 def process_booking(request, movie_id):
     if request.method == 'POST':
