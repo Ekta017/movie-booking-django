@@ -28,9 +28,9 @@ SECRET_KEY = os.environ.get(
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -114,10 +114,16 @@ import dj_database_url
 #         default=os.environ.get('DATABASE_URL')
 #     )
 # }
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
+#     )
+# }
 DATABASES = {
-    'default': dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 # Password validation
