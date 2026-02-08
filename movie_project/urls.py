@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('bookings.urls')),   # ✅ THIS IS CRITICAL
+    path('', include('bookings.urls')),
 ]
 
 if settings.DEBUG:
