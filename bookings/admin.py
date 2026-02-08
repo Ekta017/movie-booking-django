@@ -9,4 +9,4 @@ from .models import Movie
 
 @admin.register(Movie)
 class MovieAdmin(admin.ModelAdmin):
-    list_display = ('title', 'genre', 'duration')
+    list_display = ('title', 'genre', 'language')

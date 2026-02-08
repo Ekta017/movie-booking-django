@@ -2,13 +2,21 @@ from django.db import models
 from django.utils import timezone
 from datetime import timedelta
 
+
+
 class Movie(models.Model):
     title = models.CharField(max_length=200)
-    genre = models.CharField(max_length=100)
-    language = models.CharField(max_length=50, blank=True)  # ✅ ADD
-    duration = models.CharField(max_length=50)
+    genre = models.CharField(max_length=50)
+    language = models.CharField(max_length=50)
+    duration = models.CharField(max_length=20)
     poster = models.ImageField(upload_to='posters/', blank=True, null=True)
-    description = models.TextField(blank=True)
+
+    # ✅ ADD THIS
+    trailer_url = models.URLField(
+        blank=True,
+        null=True,
+        help_text="Paste YouTube embed URL (https://www.youtube.com/embed/...)"
+    )
 
     def __str__(self):
         return self.title
